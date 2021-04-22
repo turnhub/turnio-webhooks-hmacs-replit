@@ -13,8 +13,8 @@ def webhook():
     # Get HMAC and calculated by Turn from request header.
     received_hmac = request.headers['X-Turn-Hook-Signature']
 
-    # Calculate an HMAC for the request payload using secret 
-    # as sourced from Turn.
+    # Calculate an HMAC for the request payload using secret as sourced 
+    # from Turn(available in Secret column on Settings -> API & Webhooks page).
     secret = os.environ['SECRET']
     h = hmac.new(codecs.encode(secret), request.data, sha256)
     calculated_hmac = base64.b64encode(h.digest()).decode('ascii')
